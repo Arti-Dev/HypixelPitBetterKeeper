@@ -1,0 +1,9 @@
+name: BetterKeeper
+main: net.factmc.betterkeeper.Main
+version: 1.4
+api-version: 1.15
+commands:
+   thekeeper:
+      description: Opens the Keeper Menu.
+      usage: /thekeeper
+      
