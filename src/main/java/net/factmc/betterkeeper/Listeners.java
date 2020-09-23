@@ -243,7 +243,7 @@ public class Listeners implements Listener {
 					new BukkitRunnable() {
 						@Override
 						public void run() {
-							dropValues.remove(player);
+							dropValues.remove(player);      // There are probably better methods of doing this, as this is slightly buggy
 						}
 					}.runTaskLater(plugin, 20);
 					return;

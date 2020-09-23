@@ -44,10 +44,8 @@ public class BetterKeeperCommand implements CommandExecutor {
 			try {
 				player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), "§3You", ChatColor.AQUA + "You've joined The Pit " + hypixel.get() + " times!"));
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return true;
@@ -187,9 +185,9 @@ public class BetterKeeperCommand implements CommandExecutor {
     }
     public String getTime(World world) {
     	long time = world.getTime();
-    	int hours = (int) (time / 1000);
+    	int hours = (int) (time / 1000); 
     	int minutes = (int) (time % 1000);
-    	String string = (hours < 10 ? "0" : "") + hours + ":" + (minutes < 166.6 ? "0" : "") + Math.round(minutes / 16.6);
+    	String string = (hours < 10 ? "0" : "") + hours + ":" + (minutes < 166.6 ? "0" : "") + Math.round(minutes / 16.6); //TODO fix math not displaying time correctly
     	return string;
     }
 }
