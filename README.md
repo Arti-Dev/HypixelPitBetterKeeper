@@ -1,2 +1,2 @@
 # HypixelPitBetterKeeper
-# hi
+hi
