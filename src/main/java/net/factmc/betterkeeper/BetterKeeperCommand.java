@@ -42,7 +42,7 @@ public class BetterKeeperCommand implements CommandExecutor {
 				continue;
 			}
 			try {
-				player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), "§3You", ChatColor.AQUA + "You've joined The Pit " + hypixel.get() + " times!"));
+				player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "You've joined The Pit " + hypixel.get() + " times!"));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			} catch (ExecutionException e) {
