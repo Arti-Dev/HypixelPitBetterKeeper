@@ -6,13 +6,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin implements Listener {
 	@Override
 	public void onEnable() {
-		getLogger().info("onEnable has been invoked!");
+		getLogger().info("Firing up BetterKeeper!");
 		getServer().getPluginManager().registerEvents(new Listeners(this), this);
 		this.getCommand("thekeeper").setExecutor(new BetterKeeperCommand());
 	}
     @Override
     public void onDisable() {
-    	getLogger().info("onDisable has been invoked!");
+    	getLogger().info("Disabling BetterKeeper!");
     }
 
 }
