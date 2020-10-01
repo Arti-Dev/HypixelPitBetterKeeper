@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
+import org.bukkit.Material;import org.bukkit.Sound;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -198,9 +198,11 @@ public class Listeners implements Listener {
             	}
         	}
         	if (e.getRawSlot() == 29) {
+        		p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 3.0F, 1);
         		p.sendMessage(ChatColor.RED + "Too lazy to code a replica of /pitchat!");
         	}
         	if (e.getRawSlot() == 33) {
+        		p.playSound(p.getLocation(), Sound.ENTITY_VILLAGER_NO, 3.0F, 1);
         		p.sendMessage(ChatColor.RED + "Don't know what to put here..");
         	}
         	if (e.getRawSlot() == 49) {
