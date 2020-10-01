@@ -34,14 +34,13 @@ public class BetterKeeperCommand implements CommandExecutor {
 	public boolean sword = true;
 	public boolean bow = true;
 	public int itempickup = 2;
-	String apikey = plugin.config.getString("hypixelapikey"); //I cannot call this here, as it will throw a nullpointerexception..
-	HypixelAPI api = new HypixelAPI(UUID.fromString("there is nothing here for you"));
+	HypixelAPI api = null;
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
+			api = new HypixelAPI(UUID.fromString(plugin.getConfig().getString("hypixelapikey")));
 			player.openInventory(createInventoryMainMenu(player));
-			String apikey = plugin.config.getString("hypixelapikey"); //but I can call it here
 			CompletableFuture<String> hypixel = getPlayTime(api, player.getUniqueId().toString());
 			while(!hypixel.isDone()) {
 				continue;
@@ -52,7 +51,7 @@ public class BetterKeeperCommand implements CommandExecutor {
 				e.printStackTrace();
 				player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "There was an error grabbing your stats!"));
 			} catch (ExecutionException e) {
-				e.printStackTrace();
+				Bukkit.getLogger().severe("The API Key specified in config.yml is not valid!");
 				player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "There was an error grabbing your stats!"));
 			}
 			return true;
