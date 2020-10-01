@@ -1,6 +1,6 @@
 name: BetterKeeper
 main: net.factmc.betterkeeper.Main
-version: 1.4
+version: 1.5
 api-version: 1.15
 commands:
    thekeeper:
