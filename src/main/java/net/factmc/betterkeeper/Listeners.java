@@ -17,6 +17,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import net.md_5.bungee.api.ChatColor;
+
 public class Listeners implements Listener {
 	Main plugin;
 	public Listeners(Main plugin) {
@@ -38,7 +40,7 @@ public class Listeners implements Listener {
 	        	p.openInventory(BetterKeeperCommand.createInventoryPatchNotes(p));
 	        }
 	        if (e.getRawSlot() == 11) {
-	        	p.sendMessage("�6Enter the server number of the server you want to join:");
+	        	p.sendMessage(ChatColor.GOLD + "Enter the server number of the server you want to join:");
 	        	chat = true;
 	        	p.closeInventory();
 	        }
@@ -54,8 +56,8 @@ public class Listeners implements Listener {
 	        	p.closeInventory();
 	        }
 	       	if (e.getRawSlot() == 18) {
-	       		p.sendMessage("�e�lHypixel Pit Forums!");
-	       		p.sendMessage("�ehttps://hypixel.net/forums/the-pit.151/");
+	       		p.sendMessage(ChatColor.YELLOW + "" + ChatColor.BOLD + "Hypixel Pit Forums!");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/forums/the-pit.151/");
 	       		p.closeInventory();
 	       	}
     	}
@@ -65,65 +67,65 @@ public class Listeners implements Listener {
         		return;
         	} 
         	if (e.getRawSlot() >= 0 && e.getRawSlot() <= 18) {
-        		p.sendMessage("�e�lClick the link below for the patch notes:");
+        		p.sendMessage(ChatColor.YELLOW + "Click the link below for the patch notes:");
         		p.closeInventory();
         	}
         	if (e.getRawSlot() == 0) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/new-ptl-game-the-hypixel-pit.1569497/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/new-ptl-game-the-hypixel-pit.1569497/");
         	}
         	if (e.getRawSlot() == 1) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/quick-patch-notes.1571988/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/quick-patch-notes.1571988/");
         	}
         	if (e.getRawSlot() == 2) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/the-pit-update-0-2-prestige-and-stats.1578662/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/the-pit-update-0-2-prestige-and-stats.1578662/");
         	}
         	if (e.getRawSlot() == 3) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/tiny-post-update-patch.1579902/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/tiny-post-update-patch.1579902/");
         	}
         	if (e.getRawSlot() == 4) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/the-pit-update-0-3-improved-map-events-and-contracts.1595492/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/the-pit-update-0-3-improved-map-events-and-contracts.1595492/");
         	}
         	if (e.getRawSlot() == 5) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/tiny-patch-0-3-1.1619060/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/tiny-patch-0-3-1.1619060/");
         	}
         	if (e.getRawSlot() == 6) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/the-pit-0-3-5-second-map-and-mystic-well.1729768/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/the-pit-0-3-5-second-map-and-mystic-well.1729768/");
         	}
         	if (e.getRawSlot() == 7) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/the-pit-0-3-6-fishing-club-patch.1739100/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/the-pit-0-3-6-fishing-club-patch.1739100/");
         	}
         	if (e.getRawSlot() == 8) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/the-pit-0-3-7-pizza-patch.1761810/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/the-pit-0-3-7-pizza-patch.1761810/");
         	}
         	if (e.getRawSlot() == 9) {
-        		p.sendMessage("�ehttps://hypixel.net/threads/recent-bugfixes.1806239/");
+        		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/recent-bugfixes.1806239/");
         	}
         	if (e.getRawSlot() == 10) {
-        		p.sendMessage("�ehttps://hypixel.net/threads/drop-confirmation-improvements.1765674/");
+        		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/drop-confirmation-improvements.1765674/");
         	}
         	if (e.getRawSlot() == 11) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/the-pit-0-3-8-corals-map.1792819/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/the-pit-0-3-8-corals-map.1792819/");
         	}
         	if (e.getRawSlot() == 12) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/the-pit-0-3-9-tiny-bugpatch.1982167/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/the-pit-0-3-9-tiny-bugpatch.1982167/");
         	}
         	if (e.getRawSlot() == 13) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/the-pit-update-0-4-events-extravaganza.2018236/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/the-pit-update-0-4-events-extravaganza.2018236/");
         	}
         	if (e.getRawSlot() == 14) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/the-pit-0-4-1-castle-map-dark-pants.2058146/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/the-pit-0-4-1-castle-map-dark-pants.2058146/");
         	}
         	if (e.getRawSlot() == 15) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/quick-patch.2633726/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/quick-patch.2633726/");
         	}
         	if (e.getRawSlot() == 16) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/the-pit-0-4-2-genesis-map.2645445/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/the-pit-0-4-2-genesis-map.2645445/");
         	}
         	if (e.getRawSlot() == 17) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/the-pit-update-1-0-0-release.2804774/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/the-pit-update-1-0-0-release.2804774/");
         	}
         	if (e.getRawSlot() == 18) {
-	       		p.sendMessage("�ehttps://hypixel.net/threads/the-pit-1-0-1-fixes.2829510/");
+	       		p.sendMessage(ChatColor.YELLOW + "https://hypixel.net/threads/the-pit-1-0-1-fixes.2829510/");
         	}
         	if (e.getRawSlot() == 31) {
         		Bukkit.dispatchCommand(p, "thekeeper");
@@ -135,71 +137,71 @@ public class Listeners implements Listener {
         	Inventory inv = e.getInventory();
         	if (e.getRawSlot() == 10) {
         		if (BetterKeeperCommand.servernumber == false) {
-        			inv.setItem(10, BetterKeeperCommand.createGuiItem(Material.LIME_DYE, "�a�lVISIBLE!", "�7The server number shows up in the scoreboard!"));
+        			inv.setItem(10, BetterKeeperCommand.createGuiItem(Material.LIME_DYE, ChatColor.GREEN + "" + ChatColor.BOLD + "VISIBLE!", ChatColor.GRAY + "The server number shows up in the scoreboard!"));
         			BetterKeeperCommand.servernumber = true;
         		} else {
-        			inv.setItem(10, BetterKeeperCommand.createGuiItem(Material.RED_DYE, "�c�lDISABLED!", "�7The server number will not show up in the scoreboard!"));
+        			inv.setItem(10, BetterKeeperCommand.createGuiItem(Material.RED_DYE, ChatColor.RED + "" + ChatColor.BOLD + "DISABLED!", ChatColor.GRAY + "The server number will not show up in the scoreboard!"));
         			BetterKeeperCommand.servernumber = false;
         		}
         	}
         	if (e.getRawSlot() == 11) {
         		if (BetterKeeperCommand.dropconfirm == false) {
-        			inv.setItem(11, BetterKeeperCommand.createGuiItem(Material.LIME_DYE, "�a�lON!", "�7You must tap twice to drop!"));
+        			inv.setItem(11, BetterKeeperCommand.createGuiItem(Material.LIME_DYE, ChatColor.GREEN + "" + ChatColor.BOLD + "ON!", ChatColor.GRAY + "You must tap twice to drop!"));
         			BetterKeeperCommand.dropconfirm = true;
         		} else {
-        			inv.setItem(11, BetterKeeperCommand.createGuiItem(Material.RED_DYE, "�c�lOFF!", "�7No accidental drop protection!"));
+        			inv.setItem(11, BetterKeeperCommand.createGuiItem(Material.RED_DYE, ChatColor.RED + "" + ChatColor.BOLD + "OFF!", ChatColor.GRAY + "No accidental drop protection!"));
         			BetterKeeperCommand.dropconfirm = false;
         		}
         	}
         	if (e.getRawSlot() == 12) {
         		if (BetterKeeperCommand.trades == false) {
-        			inv.setItem(12, BetterKeeperCommand.createGuiItem(Material.LIME_DYE, "�a�lYES!", "�7Allow trades from other players!"));
+        			inv.setItem(12, BetterKeeperCommand.createGuiItem(Material.LIME_DYE, ChatColor.GREEN + "" + ChatColor.BOLD + "YES!", ChatColor.GRAY + "Allow trades from other players!"));
         			BetterKeeperCommand.trades = true;
         		} else {
-        			inv.setItem(12, BetterKeeperCommand.createGuiItem(Material.RED_DYE, "�c�lNO!", "�7No commerce!"));
+        			inv.setItem(12, BetterKeeperCommand.createGuiItem(Material.RED_DYE, ChatColor.RED + "" + ChatColor.BOLD + "NO!", ChatColor.GRAY + "No commerce!"));
         			BetterKeeperCommand.trades = false;
         		}
         	}
         	if (e.getRawSlot() == 14) {
         		if (BetterKeeperCommand.sword == false) {
-        			inv.setItem(14, BetterKeeperCommand.createGuiItem(Material.LIME_DYE, "�a�lENABLED!", "�7You spawn with an iron sword!"));
+        			inv.setItem(14, BetterKeeperCommand.createGuiItem(Material.LIME_DYE, ChatColor.GREEN + "" + ChatColor.BOLD + "ENABLED!", ChatColor.GRAY + "You spawn with an iron sword!"));
         			BetterKeeperCommand.sword = true;
         		} else {
-        			inv.setItem(14, BetterKeeperCommand.createGuiItem(Material.RED_DYE, "�c�lDISABLED!", "�7You don't spawn with a iron sword!"));
+        			inv.setItem(14, BetterKeeperCommand.createGuiItem(Material.RED_DYE, ChatColor.RED + "" + ChatColor.BOLD + "DISABLED!", ChatColor.GRAY + "You don't spawn with a iron sword!"));
         			BetterKeeperCommand.sword = false;
         		}
         	}
         	if (e.getRawSlot() == 15) {
         		if (BetterKeeperCommand.bow == false) {
-        			inv.setItem(15, BetterKeeperCommand.createGuiItem(Material.LIME_DYE, "�a�lENABLED!", "�7You spawn with a bow!"));
+        			inv.setItem(15, BetterKeeperCommand.createGuiItem(Material.LIME_DYE, ChatColor.GREEN + "" + ChatColor.BOLD + "ENABLED!", ChatColor.GRAY + "You spawn with a bow!"));
         			BetterKeeperCommand.bow = true;
         		} else {
-        			inv.setItem(15, BetterKeeperCommand.createGuiItem(Material.RED_DYE, "�c�lDISABLED!", "�7You don't spawn with a bow!"));
+        			inv.setItem(15, BetterKeeperCommand.createGuiItem(Material.RED_DYE, ChatColor.RED + "" + ChatColor.BOLD + "DISABLED!", ChatColor.GRAY + "You don't spawn with a bow!"));
         			BetterKeeperCommand.bow = false;
         		}
         	}
         	if (e.getRawSlot() == 16) {
         		if (BetterKeeperCommand.itempickup == 0) {
-            		inv.setItem(16, BetterKeeperCommand.createGuiItem(Material.LIME_DYE, "�a�lGIVE ME EVERYTHING!", "�7Pick up everything you can!"));
+            		inv.setItem(16, BetterKeeperCommand.createGuiItem(Material.LIME_DYE, ChatColor.GREEN + "" + ChatColor.BOLD + "GIVE ME EVERYTHING!", ChatColor.GRAY + "Pick up everything you can!"));
             		BetterKeeperCommand.itempickup = 2;
             		return;
             	}
             	if (BetterKeeperCommand.itempickup == 2) {
-            		inv.setItem(16, BetterKeeperCommand.createGuiItem(Material.ORANGE_DYE, "�6�lNO USELESS ARMOR!", "�7Pick up everything except armor that is ", "�7equivalent or worse than your current armor!"));
+            		inv.setItem(16, BetterKeeperCommand.createGuiItem(Material.ORANGE_DYE, ChatColor.GOLD + "" + ChatColor.BOLD + "NO USELESS ARMOR!", ChatColor.GRAY + "Pick up everything except armor that is ", ChatColor.GRAY + "equivalent or worse than your current armor!"));
             		BetterKeeperCommand.itempickup = 1;
             		return;
             	}
             	if (BetterKeeperCommand.itempickup == 1) {
-            		inv.setItem(16, BetterKeeperCommand.createGuiItem(Material.RED_DYE, "�c�lNOTHING!", "�7Pick up literally nothing except items related to you!"));
+            		inv.setItem(16, BetterKeeperCommand.createGuiItem(Material.RED_DYE, ChatColor.RED + "" + ChatColor.BOLD + "NOTHING!", ChatColor.GRAY + "Pick up literally nothing except items related to you!"));
             		BetterKeeperCommand.itempickup = 0;
             		return;
             	}
         	}
         	if (e.getRawSlot() == 29) {
-        		p.sendMessage("�cToo lazy to code a replica of /pitchat!");
+        		p.sendMessage(ChatColor.RED + "Too lazy to code a replica of /pitchat!");
         	}
         	if (e.getRawSlot() == 33) {
-        		p.sendMessage("�cDon't know what to put here..");
+        		p.sendMessage(ChatColor.RED + "Don't know what to put here..");
         	}
         	if (e.getRawSlot() == 49) {
         		Bukkit.dispatchCommand(p, "thekeeper");
@@ -236,7 +238,7 @@ public class Listeners implements Listener {
     	if (itemdrop.getItemStack().getType() == Material.GOLDEN_SWORD) {
     		if (BetterKeeperCommand.dropconfirm == true) {
     			if (dropValues.get(player) == null) {
-					player.sendMessage("�cYou must double-tap to drop this item!");
+					player.sendMessage(ChatColor.RED + "You must double-tap to drop this item!");
 					dropValues.put(player, true);
 					event.setCancelled(true);
 					new BukkitRunnable() {
