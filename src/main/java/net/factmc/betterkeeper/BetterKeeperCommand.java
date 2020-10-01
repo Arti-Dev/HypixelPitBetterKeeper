@@ -24,19 +24,24 @@ import net.md_5.bungee.api.ChatColor;
 
 
 public class BetterKeeperCommand implements CommandExecutor {
+	Main plugin;
+	public BetterKeeperCommand(Main plugin) {
+		this.plugin = plugin;
+	}
 	public boolean servernumber = true;
 	public boolean dropconfirm = false;
 	public boolean trades = true;
 	public boolean sword = true;
 	public boolean bow = true;
 	public int itempickup = 2;
-	final UUID API_KEY = UUID.fromString("cd78d18e-49ab-402d-8c4f-6aa08d2dbfea");
-	HypixelAPI api = new HypixelAPI(API_KEY);
+	String apikey = plugin.config.getString("hypixelapikey"); //I cannot call this here, as it will throw a nullpointerexception..
+	HypixelAPI api = new HypixelAPI(UUID.fromString("there is nothing here for you"));
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
 			player.openInventory(createInventoryMainMenu(player));
+			String apikey = plugin.config.getString("hypixelapikey"); //but I can call it here
 			CompletableFuture<String> hypixel = getPlayTime(api, player.getUniqueId().toString());
 			while(!hypixel.isDone()) {
 				continue;
@@ -45,8 +50,10 @@ public class BetterKeeperCommand implements CommandExecutor {
 				player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "You've joined The Pit " + hypixel.get() + " times!"));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+				player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "There was an error grabbing your stats!"));
 			} catch (ExecutionException e) {
 				e.printStackTrace();
+				player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "There was an error grabbing your stats!"));
 			}
 			return true;
 		    }
