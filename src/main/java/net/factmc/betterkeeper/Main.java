@@ -7,9 +7,7 @@ public class Main extends JavaPlugin implements Listener {
 	@Override
 	public void onEnable() {
 		getLogger().info("Firing up BetterKeeper!");
-		getConfig().addDefault("hypixelapikey", "");
-		getConfig().options().copyDefaults(true); //make config file
-		saveConfig();
+		saveDefaultConfig(); // copies default config.yml file to plugins folder
 		getServer().getPluginManager().registerEvents(new Listeners(this), this);
 		this.getCommand("thekeeper").setExecutor(new BetterKeeperCommand(this));
 		

@@ -27,19 +27,20 @@ public class BetterKeeperCommand implements CommandExecutor {
 	Main plugin;
 	public BetterKeeperCommand(Main plugin) {
 		this.plugin = plugin;
+		this.api = new HypixelAPI(UUID.fromString(plugin.getConfig().getString("hypixelapikey")));
 	}
-	public boolean servernumber = true;
-	public boolean dropconfirm = false;
-	public boolean trades = true;
-	public boolean sword = true;
-	public boolean bow = true;
-	public int itempickup = 2;
+	public static boolean servernumber = true;
+	public static boolean dropconfirm = false;
+	public static boolean trades = true;
+	public static boolean sword = true;
+	public static boolean bow = true;
+	public static int itempickup = 2;
 	HypixelAPI api = null;
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
-			api = new HypixelAPI(UUID.fromString(plugin.getConfig().getString("hypixelapikey")));
+			
 			player.openInventory(createInventoryMainMenu(player));
 			CompletableFuture<String> hypixel = getPlayTime(api, player.getUniqueId().toString());
 			while(!hypixel.isDone()) {
@@ -59,7 +60,7 @@ public class BetterKeeperCommand implements CommandExecutor {
 		return false;
 	}
 	// Nice little method to create a gui item with a custom name, and description
-    public ItemStack createGuiItem(final Material material, final String name, final String... lore) {
+    public static ItemStack createGuiItem(final Material material, final String name, final String... lore) {
         final ItemStack item = new ItemStack(material, 1);
         final ItemMeta meta = item.getItemMeta();
 
@@ -76,7 +77,7 @@ public class BetterKeeperCommand implements CommandExecutor {
     }
     // Method to create player skulls (owners set by UUID)
     @SuppressWarnings("deprecation")
-	protected ItemStack createcustomskull(final String playername, final String name, final String... lore) { 
+	protected static ItemStack createcustomskull(final String playername, final String name, final String... lore) { 
     	final ItemStack item = new ItemStack(Material.PLAYER_HEAD, 1);
     	SkullMeta head = (SkullMeta) item.getItemMeta();
     	head.setOwner(playername);
@@ -86,7 +87,7 @@ public class BetterKeeperCommand implements CommandExecutor {
     	return item;
     }
     // Method to create the user's skull
-    protected ItemStack createuserskull(final UUID playerid, final String name, final String... lore) { 
+    protected static ItemStack createuserskull(final UUID playerid, final String name, final String... lore) { 
     	final ItemStack item = new ItemStack(Material.PLAYER_HEAD, 1);
     	SkullMeta head = (SkullMeta) item.getItemMeta();
     	// Set player head name
@@ -98,85 +99,85 @@ public class BetterKeeperCommand implements CommandExecutor {
     	return item;
     }
     // Method to create the first inventory
-    public Inventory createInventoryMainMenu(Player player) {
+    public static Inventory createInventoryMainMenu(Player player) {
     	Inventory inv;
 		inv = Bukkit.createInventory(null, 27, "The Keeper");
-		inv.setItem(0,createGuiItem(Material.WRITABLE_BOOK, "§aPatch Notes", "§eEvery update about the Pit,","§eall in one place!"));
-		inv.setItem(4,createGuiItem(Material.CHEST_MINECART,"§e§lITEM STASH!","§7There's nothing in your stash!"));
-		inv.setItem(8, createGuiItem(Material.CLOCK, "§5Night Schedule", ChatColor.LIGHT_PURPLE + "It's currently " + getTime(player.getWorld()) + ".", "", 
-				"§bDaytime lasts 24 minutes.", "§7Nighttime lasts 12 minutes."));
-		inv.setItem(11,createGuiItem(Material.OAK_SIGN, "§aWarp to a specific instance", "§7Enter a server number!"));
-		inv.setItem(12,createGuiItem(Material.DARK_OAK_DOOR, "§aBack to Spawn", "§7Tired of frantically left-clicking on other players?",
-				"§8§oWait, that's not what you're here for..", "", "§eClick to warp!"));
-		inv.setItem(13,createuserskull(player.getUniqueId(), "§3You", "§bLoading..."));
-        inv.setItem(14,createGuiItem(Material.WOODEN_SWORD, "§aPitTutorial", "§7Need a refresher on how things work here?", "", "§eClick to warp!"));
-        inv.setItem(15,createGuiItem(Material.COMPARATOR, "§cGame Settings", "§7Tweak some settings within the Pit."));
-        inv.setItem(18,createGuiItem(Material.DIRT,"§aVisit the Hypixel Pit Forums!", "§eClick for the link!"));
-        inv.setItem(22,createGuiItem(Material.EMERALD,"§a§lTip!","§7Use /play pit to move to a random Pit Instance!"));
-        inv.setItem(26,createGuiItem(Material.MAP,"§aMap Rotation", "§eNext up: Castle on 9/1/2020", "§7Maps rotate every Tuesday 12:00 AM EST."));
+		inv.setItem(0,createGuiItem(Material.WRITABLE_BOOK, "ï¿½aPatch Notes", "ï¿½eEvery update about the Pit,","ï¿½eall in one place!"));
+		inv.setItem(4,createGuiItem(Material.CHEST_MINECART,"ï¿½eï¿½lITEM STASH!","ï¿½7There's nothing in your stash!"));
+		inv.setItem(8, createGuiItem(Material.CLOCK, "ï¿½5Night Schedule", ChatColor.LIGHT_PURPLE + "It's currently " + getTime(player.getWorld()) + ".", "", 
+				"ï¿½bDaytime lasts 24 minutes.", "ï¿½7Nighttime lasts 12 minutes."));
+		inv.setItem(11,createGuiItem(Material.OAK_SIGN, "ï¿½aWarp to a specific instance", "ï¿½7Enter a server number!"));
+		inv.setItem(12,createGuiItem(Material.DARK_OAK_DOOR, "ï¿½aBack to Spawn", "ï¿½7Tired of frantically left-clicking on other players?",
+				"ï¿½8ï¿½oWait, that's not what you're here for..", "", "ï¿½eClick to warp!"));
+		inv.setItem(13,createuserskull(player.getUniqueId(), "ï¿½3You", "ï¿½bLoading..."));
+        inv.setItem(14,createGuiItem(Material.WOODEN_SWORD, "ï¿½aPitTutorial", "ï¿½7Need a refresher on how things work here?", "", "ï¿½eClick to warp!"));
+        inv.setItem(15,createGuiItem(Material.COMPARATOR, "ï¿½cGame Settings", "ï¿½7Tweak some settings within the Pit."));
+        inv.setItem(18,createGuiItem(Material.DIRT,"ï¿½aVisit the Hypixel Pit Forums!", "ï¿½eClick for the link!"));
+        inv.setItem(22,createGuiItem(Material.EMERALD,"ï¿½aï¿½lTip!","ï¿½7Use /play pit to move to a random Pit Instance!"));
+        inv.setItem(26,createGuiItem(Material.MAP,"ï¿½aMap Rotation", "ï¿½eNext up: Castle on 9/1/2020", "ï¿½7Maps rotate every Tuesday 12:00 AM EST."));
         return inv;
     }
-    public Inventory createInventoryPatchNotes(Player player) {
+    public static Inventory createInventoryPatchNotes(Player player) {
     	Inventory inv;
 		inv = Bukkit.createInventory(null, 36, "Patch Notes");
-		inv.setItem(0,createGuiItem(Material.DIRT, "§aPit Initial Release", "§7The Pit v0.1", "", "§eClick for the link!"));
-		inv.setItem(1,createcustomskull("Minikloon", "§aQuick Patch Notes", "§7The Pit v0.1.1", "", "§eClick for the link!"));
-		inv.setItem(2,createGuiItem(Material.DIAMOND, "§aUpdate - Prestige and Stats!", "§7The Pit v0.2", "", "§eClick for the link!"));
-		inv.setItem(3,createcustomskull("Minikloon", "§aTiny post-update patch", "§7The Pit v0.2.1", "", "§eClick for the link!"));
-		inv.setItem(4,createGuiItem(Material.WRITABLE_BOOK, "§aImproved Map, Events, and Contracts!", "§7The Pit v0.3", "", "§eClick for the link!"));
-		inv.setItem(5,createcustomskull("Minikloon", "§aTiny Patch", "§7The Pit v0.3.1", "", "§eClick for the link!"));
-		inv.setItem(6,createGuiItem(Material.LEATHER_LEGGINGS, "§aSecond Map and Mystic Well!", "§7The Pit v0.3.5", "", "§eClick for the link!"));
-		inv.setItem(7,createGuiItem(Material.FISHING_ROD, "§aFishing Club Patch", "§7The Pit v0.3.6", "", "§eClick for the link!"));
-		inv.setItem(8,createGuiItem(Material.FURNACE, "§aPizza Patch", "§7The Pit v0.3.7", "", "§eClick for the link!"));
-		inv.setItem(9,createcustomskull("Minikloon","§aRecent bugfixes", "§7The Pit v0.3.7", "", "§eClick for the link!"));
-		inv.setItem(10,createGuiItem(Material.DROPPER, "§aDrop Confirmation Update", "§7The Pit v0.3.7", "", "§eClick for the link!"));
-		inv.setItem(11,createGuiItem(Material.TUBE_CORAL, "§aCorals Map", "§7The Pit v0.3.8", "", "§eClick for the link!"));
-		inv.setItem(12,createGuiItem(Material.MINECART, "§aTiny Bugpatch", "§7The Pit v0.3.9", "", "§eClick for the link!"));
-		inv.setItem(13,createGuiItem(Material.CAKE, "§aEvents Extravaganza", "§7The Pit v0.4", "", "§eClick for the link!"));
-		inv.setItem(14,createGuiItem(Material.GOLDEN_HELMET, "§aCastle Map & Dark Pants", "§7The Pit v0.4.1", "", "§eClick for the link!"));
-		inv.setItem(15,createcustomskull("Minikloon","§aQuick Patch", "§7The Pit v0.4.1", "", "§eClick for the link!"));
-		inv.setItem(16,createGuiItem(Material.DIAMOND_CHESTPLATE, "§aGenesis Map", "§7The Pit v0.4.2", "", "§eClick for the link!"));
-		inv.setItem(17,createGuiItem(Material.CLOCK, "§aHypixel Pit Release!", "§7The Pit v1.0.0", "", "§eClick for the link!"));
-		inv.setItem(18,createcustomskull("Minikloon","§aGeneral Fixes", "§7The Pit v1.0.1", "", "§eClick for the link!"));
-		inv.setItem(31,createGuiItem(Material.ARROW, "§aGo Back", "§7The Keeper"));
+		inv.setItem(0,createGuiItem(Material.DIRT, "ï¿½aPit Initial Release", "ï¿½7The Pit v0.1", "", "ï¿½eClick for the link!"));
+		inv.setItem(1,createcustomskull("Minikloon", "ï¿½aQuick Patch Notes", "ï¿½7The Pit v0.1.1", "", "ï¿½eClick for the link!"));
+		inv.setItem(2,createGuiItem(Material.DIAMOND, "ï¿½aUpdate - Prestige and Stats!", "ï¿½7The Pit v0.2", "", "ï¿½eClick for the link!"));
+		inv.setItem(3,createcustomskull("Minikloon", "ï¿½aTiny post-update patch", "ï¿½7The Pit v0.2.1", "", "ï¿½eClick for the link!"));
+		inv.setItem(4,createGuiItem(Material.WRITABLE_BOOK, "ï¿½aImproved Map, Events, and Contracts!", "ï¿½7The Pit v0.3", "", "ï¿½eClick for the link!"));
+		inv.setItem(5,createcustomskull("Minikloon", "ï¿½aTiny Patch", "ï¿½7The Pit v0.3.1", "", "ï¿½eClick for the link!"));
+		inv.setItem(6,createGuiItem(Material.LEATHER_LEGGINGS, "ï¿½aSecond Map and Mystic Well!", "ï¿½7The Pit v0.3.5", "", "ï¿½eClick for the link!"));
+		inv.setItem(7,createGuiItem(Material.FISHING_ROD, "ï¿½aFishing Club Patch", "ï¿½7The Pit v0.3.6", "", "ï¿½eClick for the link!"));
+		inv.setItem(8,createGuiItem(Material.FURNACE, "ï¿½aPizza Patch", "ï¿½7The Pit v0.3.7", "", "ï¿½eClick for the link!"));
+		inv.setItem(9,createcustomskull("Minikloon","ï¿½aRecent bugfixes", "ï¿½7The Pit v0.3.7", "", "ï¿½eClick for the link!"));
+		inv.setItem(10,createGuiItem(Material.DROPPER, "ï¿½aDrop Confirmation Update", "ï¿½7The Pit v0.3.7", "", "ï¿½eClick for the link!"));
+		inv.setItem(11,createGuiItem(Material.TUBE_CORAL, "ï¿½aCorals Map", "ï¿½7The Pit v0.3.8", "", "ï¿½eClick for the link!"));
+		inv.setItem(12,createGuiItem(Material.MINECART, "ï¿½aTiny Bugpatch", "ï¿½7The Pit v0.3.9", "", "ï¿½eClick for the link!"));
+		inv.setItem(13,createGuiItem(Material.CAKE, "ï¿½aEvents Extravaganza", "ï¿½7The Pit v0.4", "", "ï¿½eClick for the link!"));
+		inv.setItem(14,createGuiItem(Material.GOLDEN_HELMET, "ï¿½aCastle Map & Dark Pants", "ï¿½7The Pit v0.4.1", "", "ï¿½eClick for the link!"));
+		inv.setItem(15,createcustomskull("Minikloon","ï¿½aQuick Patch", "ï¿½7The Pit v0.4.1", "", "ï¿½eClick for the link!"));
+		inv.setItem(16,createGuiItem(Material.DIAMOND_CHESTPLATE, "ï¿½aGenesis Map", "ï¿½7The Pit v0.4.2", "", "ï¿½eClick for the link!"));
+		inv.setItem(17,createGuiItem(Material.CLOCK, "ï¿½aHypixel Pit Release!", "ï¿½7The Pit v1.0.0", "", "ï¿½eClick for the link!"));
+		inv.setItem(18,createcustomskull("Minikloon","ï¿½aGeneral Fixes", "ï¿½7The Pit v1.0.1", "", "ï¿½eClick for the link!"));
+		inv.setItem(31,createGuiItem(Material.ARROW, "ï¿½aGo Back", "ï¿½7The Keeper"));
         return inv;
     }
-    public Inventory createInventorySettings(Player player) {
+    public static Inventory createInventorySettings(Player player) {
     	Inventory inv;
     	inv = Bukkit.createInventory(null, 54, "Settings");
-    	inv.setItem(1, createGuiItem(Material.NAME_TAG, "§aEnable Server Number in Scoreboard"));
-    	inv.setItem(2, createGuiItem(Material.HOPPER, "§aDrop Confirmation"));
-    	inv.setItem(3, createGuiItem(Material.MINECART, "§aAllow/Disallow Incoming Trade Requests"));
-    	inv.setItem(5, createGuiItem(Material.IRON_SWORD, "§aSpawn with an Iron Sword"));
-    	inv.setItem(6, createGuiItem(Material.BOW, "§aSpawn with a Bow"));
-    	inv.setItem(7, createGuiItem(Material.IRON_CHESTPLATE, "§aItem Pickups"));
+    	inv.setItem(1, createGuiItem(Material.NAME_TAG, "ï¿½aEnable Server Number in Scoreboard"));
+    	inv.setItem(2, createGuiItem(Material.HOPPER, "ï¿½aDrop Confirmation"));
+    	inv.setItem(3, createGuiItem(Material.MINECART, "ï¿½aAllow/Disallow Incoming Trade Requests"));
+    	inv.setItem(5, createGuiItem(Material.IRON_SWORD, "ï¿½aSpawn with an Iron Sword"));
+    	inv.setItem(6, createGuiItem(Material.BOW, "ï¿½aSpawn with a Bow"));
+    	inv.setItem(7, createGuiItem(Material.IRON_CHESTPLATE, "ï¿½aItem Pickups"));
     	if (servernumber == true) {
-    		inv.setItem(10, createGuiItem(Material.LIME_DYE, "§a§lVISIBLE!", "§7The server number shows up in the scoreboard!"));
-    	} else inv.setItem(10, createGuiItem(Material.RED_DYE, "§c§lDISABLED!", "§7The server number will not show up in the scoreboard!"));
+    		inv.setItem(10, createGuiItem(Material.LIME_DYE, "ï¿½aï¿½lVISIBLE!", "ï¿½7The server number shows up in the scoreboard!"));
+    	} else inv.setItem(10, createGuiItem(Material.RED_DYE, "ï¿½cï¿½lDISABLED!", "ï¿½7The server number will not show up in the scoreboard!"));
     	if (dropconfirm == true) {
-    		inv.setItem(11, createGuiItem(Material.LIME_DYE, "§a§lON!", "§7You must tap twice to drop!"));
-    	} else inv.setItem(11, createGuiItem(Material.RED_DYE, "§c§lOFF!", "§7No accidental drop protection!"));
+    		inv.setItem(11, createGuiItem(Material.LIME_DYE, "ï¿½aï¿½lON!", "ï¿½7You must tap twice to drop!"));
+    	} else inv.setItem(11, createGuiItem(Material.RED_DYE, "ï¿½cï¿½lOFF!", "ï¿½7No accidental drop protection!"));
     	if (trades == true) {
-    		inv.setItem(12, createGuiItem(Material.LIME_DYE, "§a§lYES!", "§7Allow trades from other players!"));
-    	} else inv.setItem(12, createGuiItem(Material.RED_DYE, "§c§lNO!", "§7No commerce!"));
+    		inv.setItem(12, createGuiItem(Material.LIME_DYE, "ï¿½aï¿½lYES!", "ï¿½7Allow trades from other players!"));
+    	} else inv.setItem(12, createGuiItem(Material.RED_DYE, "ï¿½cï¿½lNO!", "ï¿½7No commerce!"));
     	if (sword == true) {
-    		inv.setItem(14, createGuiItem(Material.LIME_DYE, "§a§lENABLED!", "§7You spawn with an iron sword!"));
-    	} else inv.setItem(14, createGuiItem(Material.RED_DYE, "§c§lDISABLED!", "§7You don't spawn with a iron sword!"));
+    		inv.setItem(14, createGuiItem(Material.LIME_DYE, "ï¿½aï¿½lENABLED!", "ï¿½7You spawn with an iron sword!"));
+    	} else inv.setItem(14, createGuiItem(Material.RED_DYE, "ï¿½cï¿½lDISABLED!", "ï¿½7You don't spawn with a iron sword!"));
     	if (bow == true) {
-    		inv.setItem(15, createGuiItem(Material.LIME_DYE, "§a§lENABLED!", "§7You spawn with a bow!"));
-    	} else inv.setItem(15, createGuiItem(Material.RED_DYE, "§c§lDISABLED!", "§7You don't spawn with a bow!"));
+    		inv.setItem(15, createGuiItem(Material.LIME_DYE, "ï¿½aï¿½lENABLED!", "ï¿½7You spawn with a bow!"));
+    	} else inv.setItem(15, createGuiItem(Material.RED_DYE, "ï¿½cï¿½lDISABLED!", "ï¿½7You don't spawn with a bow!"));
     	if (itempickup == 2) {
-    		inv.setItem(16, createGuiItem(Material.LIME_DYE, "§a§lGIVE ME EVERYTHING!", "§7Pick up everything you can!"));
+    		inv.setItem(16, createGuiItem(Material.LIME_DYE, "ï¿½aï¿½lGIVE ME EVERYTHING!", "ï¿½7Pick up everything you can!"));
     	}
     	if (itempickup == 1) {
-    		inv.setItem(16, createGuiItem(Material.ORANGE_DYE, "§6§lNO USELESS ARMOR!", "§7Pick up everything except armor that is equivalent or worse than your current armor!"));
+    		inv.setItem(16, createGuiItem(Material.ORANGE_DYE, "ï¿½6ï¿½lNO USELESS ARMOR!", "ï¿½7Pick up everything except armor that is equivalent or worse than your current armor!"));
     	}
     	if (itempickup == 0) {
-    		inv.setItem(16, createGuiItem(Material.LIME_DYE, "§a§cNOTHING!", "§7Pick up literally nothing!"));
+    		inv.setItem(16, createGuiItem(Material.LIME_DYE, "ï¿½aï¿½cNOTHING!", "ï¿½7Pick up literally nothing!"));
     	}
-    	inv.setItem(29, createGuiItem(Material.WRITABLE_BOOK, "§a/pitchat", "§7Click here to change your chat settings!"));
-    	inv.setItem(33, createGuiItem(Material.COBWEB, "§aAPI Settings", "§7Click here to change your API settings!"));
-    	inv.setItem(49, createGuiItem(Material.ARROW, "§aGo Back", "§7The Keeper"));
+    	inv.setItem(29, createGuiItem(Material.WRITABLE_BOOK, "ï¿½a/pitchat", "ï¿½7Click here to change your chat settings!"));
+    	inv.setItem(33, createGuiItem(Material.COBWEB, "ï¿½aAPI Settings", "ï¿½7Click here to change your API settings!"));
+    	inv.setItem(49, createGuiItem(Material.ARROW, "ï¿½aGo Back", "ï¿½7The Keeper"));
     	return inv;
     }
     public static CompletableFuture<String> getPlayTime(HypixelAPI api, String uuid) {
@@ -189,7 +190,7 @@ public class BetterKeeperCommand implements CommandExecutor {
 		});
     	
     }
-    public String getTime(World world) {
+    public static String getTime(World world) {
     	long time = world.getTime();
     	int hours = (int) (time / 1000); 
     	int minutes = (int) (time % 1000);
