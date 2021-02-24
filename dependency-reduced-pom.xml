@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.factmc.betterkeeper</groupId>
   <artifactId>BetterKeeper</artifactId>
-  <version>1.4</version>
+  <version>1.5</version>
   <build>
     <plugins>
       <plugin>
