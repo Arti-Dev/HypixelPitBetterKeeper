@@ -35,7 +35,7 @@ public class BetterKeeperCommand implements CommandExecutor {
 	public static boolean sword = true;
 	public static boolean bow = true;
 	public static int itempickup = 2;
-	HypixelAPI api = null;
+	HypixelAPI api;
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (sender instanceof Player) {
@@ -44,7 +44,7 @@ public class BetterKeeperCommand implements CommandExecutor {
 			player.openInventory(createInventoryMainMenu(player));
 			CompletableFuture<String> hypixel = getPlayTime(api, player.getUniqueId().toString());
 			while(!hypixel.isDone()) {
-				continue;
+				// Stalling program until it finishes - should probably add a timeout!
 			}
 			try {
 				player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "You've joined The Pit " + hypixel.get() + " times!"));
@@ -151,19 +151,19 @@ public class BetterKeeperCommand implements CommandExecutor {
     	inv.setItem(5, createGuiItem(Material.IRON_SWORD, ChatColor.GREEN + "Spawn with an Iron Sword"));
     	inv.setItem(6, createGuiItem(Material.BOW, ChatColor.GREEN + "Spawn with a Bow"));
     	inv.setItem(7, createGuiItem(Material.IRON_CHESTPLATE, ChatColor.GREEN + "Item Pickups"));
-    	if (servernumber == true) {
+    	if (servernumber) {
     		inv.setItem(10, createGuiItem(Material.LIME_DYE, ChatColor.GREEN + "" + ChatColor.BOLD + "VISIBLE!", ChatColor.GRAY + "The server number shows up in the scoreboard!"));
     	} else inv.setItem(10, createGuiItem(Material.RED_DYE, ChatColor.RED + "" + ChatColor.BOLD + "DISABLED!", ChatColor.GRAY + "The server number will not show up in the scoreboard!"));
-    	if (dropconfirm == true) {
+    	if (dropconfirm) {
     		inv.setItem(11, createGuiItem(Material.LIME_DYE, ChatColor.GREEN + "" + ChatColor.BOLD + "ON!", ChatColor.GRAY + "You must tap twice to drop!"));
     	} else inv.setItem(11, createGuiItem(Material.RED_DYE, ChatColor.RED + "" + ChatColor.BOLD + "OFF!", ChatColor.GRAY + "No accidental drop protection!"));
-    	if (trades == true) {
+    	if (trades) {
     		inv.setItem(12, createGuiItem(Material.LIME_DYE, ChatColor.GREEN + "" + ChatColor.BOLD + "YES!", ChatColor.GRAY + "Allow trades from other players!"));
     	} else inv.setItem(12, createGuiItem(Material.RED_DYE, ChatColor.RED + "" + ChatColor.BOLD + "NO!", ChatColor.GRAY + "No commerce!"));
-    	if (sword == true) {
+    	if (sword) {
     		inv.setItem(14, createGuiItem(Material.LIME_DYE, ChatColor.GREEN + "" + ChatColor.BOLD + "ENABLED!", ChatColor.GRAY + "You spawn with an iron sword!"));
     	} else inv.setItem(14, createGuiItem(Material.RED_DYE, ChatColor.RED + "" + ChatColor.BOLD + "DISABLED!", ChatColor.GRAY + "You don't spawn with a iron sword!"));
-    	if (bow == true) {
+    	if (bow) {
     		inv.setItem(15, createGuiItem(Material.LIME_DYE, ChatColor.GREEN + "" + ChatColor.BOLD + "ENABLED!", ChatColor.GRAY + "You spawn with a bow!"));
     	} else inv.setItem(15, createGuiItem(Material.RED_DYE, ChatColor.RED + "" + ChatColor.BOLD + "DISABLED!", ChatColor.GRAY + "You don't spawn with a bow!"));
     	if (itempickup == 2) {
