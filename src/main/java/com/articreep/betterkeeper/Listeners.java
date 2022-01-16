@@ -1,4 +1,4 @@
-package net.factmc.betterkeeper;
+package com.articreep.betterkeeper;
 
 import java.util.HashMap;
 import java.util.Map;

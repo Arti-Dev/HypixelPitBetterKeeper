@@ -1,10 +1,12 @@
-package net.factmc.betterkeeper;
+package com.articreep.betterkeeper;
 
 import java.util.Arrays;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+import net.hypixel.api.http.HypixelHttpClient;
+import net.hypixel.api.unirest.UnirestHttpClient;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -26,8 +28,9 @@ import net.md_5.bungee.api.ChatColor;
 public class BetterKeeperCommand implements CommandExecutor {
 	Main plugin;
 	public BetterKeeperCommand(Main plugin) {
+		HypixelHttpClient client = new UnirestHttpClient(UUID.fromString(plugin.getConfig().getString("hypixelapikey")));
 		this.plugin = plugin;
-		this.api = new HypixelAPI(UUID.fromString(plugin.getConfig().getString("hypixelapikey")));
+		this.api = new HypixelAPI(client);
 	}
 	public static boolean servernumber = true;
 	public static boolean dropconfirm = false;
