@@ -23,6 +23,8 @@ import com.google.gson.JsonObject;
 
 import net.hypixel.api.HypixelAPI;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
 
 public class BetterKeeperCommand implements CommandExecutor {
@@ -43,21 +45,20 @@ public class BetterKeeperCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
-			
+
 			player.openInventory(createInventoryMainMenu(player));
 			CompletableFuture<String> hypixel = getPlayTime(api, player.getUniqueId().toString());
-			while(!hypixel.isDone()) {
-				// Stalling program until it finishes - should probably add a timeout!
-			}
-			try {
-				player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "You've joined The Pit " + hypixel.get() + " times!"));
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-				player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "There was an error grabbing your stats!"));
-			} catch (ExecutionException e) {
-				Bukkit.getLogger().severe("The API Key specified in config.yml is not valid!");
-				player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "There was an error grabbing your stats!"));
-			}
+			hypixel.whenComplete((output, exception) -> {
+				try {
+					player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "You've joined The Pit " + hypixel.get() + " times!"));
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+					player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "There was an error grabbing your stats!"));
+				} catch (ExecutionException e) {
+					Bukkit.getLogger().severe("The API Key specified in config.yml is not valid!");
+					player.getOpenInventory().getTopInventory().setItem(13,createuserskull(player.getUniqueId(), ChatColor.DARK_AQUA + "You", ChatColor.AQUA + "There was an error grabbing your stats!"));
+				}
+			});
 			return true;
 		    }
 		return false;
@@ -185,7 +186,7 @@ public class BetterKeeperCommand implements CommandExecutor {
     }
     public static CompletableFuture<String> getPlayTime(HypixelAPI api, String uuid) {
 		return api.getPlayerByUuid(UUID.fromString(uuid)).thenApply((reply) -> {
-			JsonObject player = reply.getPlayer();
+			JsonObject player = reply.getPlayer().getRaw();
 			JsonObject stats = player.getAsJsonObject("stats");
 			JsonObject pit = stats.getAsJsonObject("Pit");
 			JsonObject pit2 = pit.getAsJsonObject("pit_stats_ptl");
